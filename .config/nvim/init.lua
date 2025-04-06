@@ -43,20 +43,6 @@ require("lazy").setup({
         vim.g.slime_cell_delimiter = "%%"
       end
     },
-    {
-      "nvim-treesitter/nvim-treesitter",
-      build = ":TSUpdate",
-      config = function ()
-        local configs = require("nvim-treesitter.configs")
-
-        configs.setup({
-          ensure_installed = { "c", "lua", "vim", "vimdoc", "latex" },
-          sync_install = false,
-          highlight = { enable = false },
-          indent = { enable = true }
-        })
-      end
-    },
       { import = "custom.plugins" },
     },
   })
