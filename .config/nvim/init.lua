@@ -50,3 +50,5 @@ require("lazy").setup({
   })
 
 vim.cmd.colorscheme("retrobox")
+vim.api.nvim_set_hl(0, "Normal", { ctermbg = "none" })
+vim.api.nvim_set_hl(0, "SignColumn", { ctermbg = "none" })
