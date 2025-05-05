@@ -28,6 +28,7 @@ require("lazy").setup({
     "mg979/vim-visual-multi",
     {
       'lervag/vimtex',
+      ft = 'tex',
       config = function()
         vim.g.vimtex_view_method = 'zathura'
         vim.g.vimtex_quickfix_enabled = 0
@@ -36,6 +37,7 @@ require("lazy").setup({
     },
     {
       "jpalardy/vim-slime",
+      ft = 'matlab',
       config = function ()
         vim.g.slime_target = "tmux"
         vim.g.slime_default_config = {socket_name = "default", target_pane = "1"}
@@ -43,8 +45,8 @@ require("lazy").setup({
         vim.g.slime_cell_delimiter = "%%"
       end
     },
-      { import = "custom.plugins" },
-    },
+    { import = "custom.plugins" },
+  },
   })
 
 vim.cmd.colorscheme("retrobox")
