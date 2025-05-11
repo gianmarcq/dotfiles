@@ -1,0 +1,4 @@
+fzf/telescope
+configure bar
+configure ex manager
+add treesitter plugin

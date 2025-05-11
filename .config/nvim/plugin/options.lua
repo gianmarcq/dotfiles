@@ -21,12 +21,13 @@ vim.opt.smartcase = true
 
 -- Make trailing spaces visible
 vim.opt.list = true
-vim.opt.listchars = { trail = '·' }
+vim.opt.listchars = { trail = "·" }
 
 -- Preview file substitution
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 -- Make the jumplist behave like a stack
 vim.opt.jumpoptions = { "stack", "view" }
+vim.opt.completeopt = { "fuzzy", "menuone", "noinsert", "preview" }
 
 vim.opt.path:append("**")

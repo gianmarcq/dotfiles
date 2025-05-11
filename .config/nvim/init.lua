@@ -25,7 +25,6 @@ vim.g.mapleader = ' '
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    "mg979/vim-visual-multi",
     {
       'lervag/vimtex',
       ft = 'tex',
@@ -45,10 +44,47 @@ require("lazy").setup({
         vim.g.slime_cell_delimiter = "%%"
       end
     },
-    { import = "custom.plugins" },
+    { "ellisonleao/gruvbox.nvim",
+    lazy = false,
+    init = function ()
+      require("gruvbox").setup({
+        undercurl = false,
+        underline = false,
+        bold = true,
+        italic = {
+          strings = false,
+          emphasis = false,
+          comments = false,
+          operators = false,
+          folds = true,
+        },
+        strikethrough = false,
+        invert_selection = false,
+        invert_signs = false,
+        invert_tabline = false,
+        inverse = false, -- invert background for search, diffs, statuslines and errors
+        contrast = "", -- can be "hard", "soft" or empty string
+        palette_overrides = {},
+        dim_inactive = false,
+        transparent_mode = true,
+        overrides = {
+          ['@variable'] = { fg = '#eeeeec' },
+          ['@constant'] = { fg = '#eeeeec' },
+          ['@module'] = { fg = '#eeeeec' },
+          ['@function'] = { fg = '#eeeeec' },
+          Normal = { fg = '#eeeeec' },
+          Operator = { fg = '#eeeeec' },
+          Function = { fg = '#eeeeec' },
+          Identifier = { fg = '#eeeeec' },
+          Special = { fg = '#eeeeec' },
+          Delimiter = { fg = '#eeeeec' },
+        }
+      })
+      vim.cmd.colorscheme("gruvbox")
+      -- vim.api.nvim_set_hl(0, "Normal", { ctermbg = "none" })
+      -- vim.api.nvim_set_hl(0, "SignColumn", { ctermbg = "none" })
+    end
   },
-  })
-
-vim.cmd.colorscheme("retrobox")
-vim.api.nvim_set_hl(0, "Normal", { ctermbg = "none" })
-vim.api.nvim_set_hl(0, "SignColumn", { ctermbg = "none" })
+  { import = "custom.plugins" },
+},
+})

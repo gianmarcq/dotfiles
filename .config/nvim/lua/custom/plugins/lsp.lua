@@ -42,11 +42,20 @@ return {
         client.server_capabilities.semanticTokensProvider = nil
 
         vim.diagnostic.config({
-          update_in_insert = true,
+          -- virtual_lines = { current_line = true },
           virtual_text = true,
+          update_in_insert = true,
           underline = false,
-          signs = false
+          signs = {
+            text = {
+              [vim.diagnostic.severity.ERROR] = "e",
+              [vim.diagnostic.severity.WARN] = "w",
+              [vim.diagnostic.severity.INFO] = "i",
+              [vim.diagnostic.severity.HINT] = "h",
+            }
+          },
         })
+
       end,
     })
   end

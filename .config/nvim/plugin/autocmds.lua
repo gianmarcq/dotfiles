@@ -7,23 +7,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Avoid auto-commenting when writing around comments
-vim.api.nvim_create_autocmd({ "FileType" }, {
+vim.api.nvim_create_autocmd("FileType", {
   desc = "Avoid annoying auto-commenting when using o/O on commented line",
   callback = function()
     vim.opt.formatoptions:remove("o")
   end,
 })
 
--- Disable treesitter highlighting
-vim.api.nvim_create_autocmd('BufEnter', {
-  group = vim.api.nvim_create_augroup("DisableTreesitter", { clear = true }),
-  callback = function()
-    vim.treesitter.stop()
-  end
-})
-
 -- Preserve file cursor position
-vim.api.nvim_create_autocmd('BufReadPost', {
+vim.api.nvim_create_autocmd("BufReadPost", {
   desc = "Remember last cursor position",
   group = vim.api.nvim_create_augroup("RememberCursor", { clear = true }),
   callback = function()
