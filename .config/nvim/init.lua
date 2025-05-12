@@ -44,7 +44,7 @@ require("lazy").setup({
         vim.g.slime_cell_delimiter = "%%"
       end
     },
-    { import = "custom.plugins" },
+    { import = "plugins" },
   },
   rocks = { enabled = false },
   install = { colorscheme = { "retrobox" } },

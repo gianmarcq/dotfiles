@@ -6,10 +6,6 @@ vim.opt.guicursor = "i:block"
 vim.opt.signcolumn = "yes:1"
 vim.opt.scrolloff = 5
 
--- Highlight current line number
-vim.opt.cursorline = true
-vim.opt.cursorlineopt = "number"
-
 -- Proper options for tabs behaviour
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
@@ -28,6 +24,7 @@ vim.opt.inccommand = "split"
 
 -- Make the jumplist behave like a stack
 vim.opt.jumpoptions = { "stack", "view" }
-vim.opt.completeopt = { "fuzzy", "menuone", "noinsert", "preview" }
 
+vim.opt.completeopt = { "fuzzy", "menuone", "noinsert", "preview" }
+vim.opt.wildoptions = { "tagfile", "fuzzy" }
 vim.opt.path:append("**")
