@@ -1,6 +1,3 @@
-export HISTFILE="$ZDOTDIR/.zhistory"
-export HISTSIZE=10000
-export SAVEHIST=10000
 export EDITOR="nvim"
 export MANPAGER='nvim +Man!'
 export MANWIDTH=80
