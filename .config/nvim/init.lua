@@ -39,7 +39,7 @@ require("lazy").setup({
       ft = 'matlab',
       config = function ()
         vim.g.slime_target = "tmux"
-        vim.g.slime_default_config = {socket_name = "default", target_pane = "1"}
+        vim.g.slime_default_config = {socket_name = "default", target_pane = "2"}
         vim.g.slime_dont_ask_default = true
         vim.g.slime_cell_delimiter = "%%"
       end
