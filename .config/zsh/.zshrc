@@ -25,3 +25,5 @@ eval "$(zoxide init --cmd cd zsh)"
 . "$HOME/.cargo/env"
 
 PS1='[%n@%m]%~%# '
+
+. "$HOME/.local/bin/env"

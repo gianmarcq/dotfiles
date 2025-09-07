@@ -20,17 +20,27 @@ vim.lsp.config.luals = {
 }
 
 vim.lsp.config.clangd = {
-    cmd = {
-        "clangd",
-        "--clang-tidy",
-        "--background-index",
-        "--offset-encoding=utf-8",
-    },
-    root_markers = { ".clangd", "compile_commands.json" },
-    filetypes = { "c", "cpp" },
+  cmd = {
+    "clangd",
+    "--clang-tidy",
+    "--background-index",
+    "--offset-encoding=utf-8",
+  },
+  root_markers = { ".clangd", "compile_commands.json" },
+  filetypes = { "c", "cpp" },
 }
 
-vim.lsp.enable({ "luals", "clangd" })
+vim.lsp.config.tinymist = {
+  cmd = { "tinymist" },
+  filetypes = { "typst" },
+  settings = {
+    formatterMode = "typstyle",
+    exportPdf = "onType",
+    semanticTokens = "disable"
+  }
+}
+
+vim.lsp.enable({ "luals", "clangd", "tinymist" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
