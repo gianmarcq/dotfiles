@@ -14,6 +14,7 @@ export MANWIDTH=80
 export HISTFILE="$ZDOTDIR/.zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=10000
+export PATH="$HOME/.local/bin:$PATH"
 
 bindkey -e
 
@@ -28,3 +29,6 @@ source <(fzf --zsh)
 
 # Set up zoxide
 eval "$(zoxide init zsh)"
+
+# Set up brew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
