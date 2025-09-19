@@ -47,7 +47,27 @@ vim.lsp.config.tinymist = {
   }
 }
 
-vim.lsp.enable({ "luals", "clangd", "tinymist" })
+vim.lsp.config('pylsp', {
+  cmd = { "pylsp" },
+  filetypes = { "python" },
+  settings = {
+    pylsp = {
+      plugins = {
+        pycodestyle = {
+          ignore = {'W391', "E401", "E701"},
+          maxLineLength = 100
+        }
+      }
+    }
+  }
+})
+
+vim.lsp.enable({
+  "luals",
+  "clangd",
+  "tinymist",
+  "pylsp"
+})
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(ev)
