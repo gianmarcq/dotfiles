@@ -63,3 +63,5 @@ vim.api.nvim_set_hl(0, "Function",   { fg = "#ebdbb2" })
 vim.api.nvim_set_hl(0, "Identifier", { fg = "#ebdbb2" })
 vim.api.nvim_set_hl(0, "Special",    { fg = "#ebdbb2" })
 vim.api.nvim_set_hl(0, "Delimiter",  { fg = "#ebdbb2" })
+
+require("glossary")
