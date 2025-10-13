@@ -14,7 +14,7 @@ export MANWIDTH=80
 export HISTFILE="$ZDOTDIR/.zsh_history"
 export HISTSIZE=10000
 export SAVEHIST=10000
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.scripts:$HOME/.local/bin:$PATH"
 
 bindkey -e
 
