@@ -44,19 +44,26 @@ vim.lsp.config.tinymist = {
     formatterMode = "typstyle",
     exportPdf = "onType",
     semanticTokens = "disable"
-  }
-}
+  } }
 
-vim.lsp.config('pylsp', {
-  cmd = { "pylsp" },
+vim.lsp.config('pyright', {
+  cmd = { "pyright-langserver", "--stdio" },
   filetypes = { "python" },
+  root_markers = {
+    "pyproject.toml",
+    "setup.py",
+    "setup.cfg",
+    "requirements.txt",
+    "Pipfile",
+    "pyrightconfig.json",
+    ".git"
+  },
   settings = {
-    pylsp = {
-      plugins = {
-        pycodestyle = {
-          ignore = {'W391', "E401", "E701"},
-          maxLineLength = 100
-        }
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "openFilesOnly",
+        useLibraryCodeForTypes = true
       }
     }
   }
@@ -66,7 +73,7 @@ vim.lsp.enable({
   "luals",
   "clangd",
   "tinymist",
-  "pylsp"
+  "pyright"
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
