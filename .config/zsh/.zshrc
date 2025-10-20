@@ -6,6 +6,7 @@ setopt pushd_silent
 
 setopt share_history
 setopt inc_append_history
+setopt hist_ignore_all_dups
 
 export EDITOR="nvim"
 export MANPAGER='nvim +Man!'
@@ -22,7 +23,8 @@ autoload -U colors && colors
 PS1="%B%{$fg[green]%}[%n@%m:%~]%#%{$reset_color%}%b "
 
 zstyle :compinstall filename '/home/gianmarco/.config/zsh/.zshrc'
-autoload -Uz compinit; compinit
+autoload -Uz compinit promptinit
+compinit; promptinit
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
