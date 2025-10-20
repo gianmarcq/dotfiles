@@ -1,0 +1,7 @@
+#!/bin/sh
+file_path=$(fd "^ghidraRun$" $HOME -tx)
+if [ -n "$file_path" ]; then
+    $file_path
+else
+    echo "Unable to find ghidraRun binary in $HOME"
+fi

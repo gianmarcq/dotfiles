@@ -1,0 +1,10 @@
+#!/bin/sh
+file_path=$(fd "^CyberChef\_v\d*" $HOME -e html)
+# brave-browser --app="file://$file_path"
+if [ -n "$file_path" ]; then
+    nohup brave-browser $file_path >/dev/null 2>&1 &
+    disown
+else
+    echo "Unable to find CyberChef web application in $HOME"
+fi
+
