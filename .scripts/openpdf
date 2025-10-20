@@ -1,6 +1,15 @@
 #!/bin/sh
-selected_file=$(fd . $HOME -e pdf | fzf)
-if [ -n "$selected_file" ]; then
-    nohup zathura "$selected_file" >/dev/null 2>&1 &
-    disown
+if [ -n "$1" ]; then
+    if [ -f "$1" ]; then
+        nohup zathura "$1" >/dev/null 2>&1 &
+        disown
+    else
+        echo "Unable to find file $1"
+    fi
+else
+    selected_file=$(fd . $HOME -e pdf | fzf)
+    if [ -n "$selected_file" ]; then
+        nohup zathura "$selected_file" >/dev/null 2>&1 &
+        disown
+    fi
 fi
