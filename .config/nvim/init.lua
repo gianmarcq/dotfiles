@@ -25,43 +25,11 @@ vim.g.mapleader = ' '
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    {
-      'lervag/vimtex',
-      ft = 'tex',
-      config = function()
-        vim.g.vimtex_view_method = 'zathura'
-        vim.g.vimtex_quickfix_enabled = 0
-        vim.g.vimtex_view_forward_search_on_start = 0
-      end,
-    },
-    {
-      "jpalardy/vim-slime",
-      ft = 'matlab',
-      config = function ()
-        vim.g.slime_target = "tmux"
-        vim.g.slime_default_config = {socket_name = "default", target_pane = "2"}
-        vim.g.slime_dont_ask_default = true
-        vim.g.slime_cell_delimiter = "%%"
-      end
-    },
     { import = "plugins" },
   },
   rocks = { enabled = false },
   install = { colorscheme = { "retrobox" } },
 })
 
-vim.cmd.colorscheme("retrobox")
-vim.api.nvim_set_hl(0, "Normal",     { ctermbg = "none" })
-vim.api.nvim_set_hl(0, "SignColumn", { ctermbg = "none" })
-vim.api.nvim_set_hl(0, "@variable",  { fg = "#ebdbb2" })
-vim.api.nvim_set_hl(0, "@constant",  { fg = "#ebdbb2" })
-vim.api.nvim_set_hl(0, "@module",    { fg = "#ebdbb2" })
-vim.api.nvim_set_hl(0, "@function",  { fg = "#ebdbb2" })
-vim.api.nvim_set_hl(0, "Normal",     { fg = "#ebdbb2" })
-vim.api.nvim_set_hl(0, "Operator",   { fg = "#ebdbb2" })
-vim.api.nvim_set_hl(0, "Function",   { fg = "#ebdbb2" })
-vim.api.nvim_set_hl(0, "Identifier", { fg = "#ebdbb2" })
-vim.api.nvim_set_hl(0, "Special",    { fg = "#ebdbb2" })
-vim.api.nvim_set_hl(0, "Delimiter",  { fg = "#ebdbb2" })
-
+-- Custom functions for live-translation
 require("glossary")

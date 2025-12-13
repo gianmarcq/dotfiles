@@ -1,86 +1,39 @@
-vim.lsp.config("*", {
-  root_markers = { ".git" },
-})
-
-vim.lsp.config.luals = {
-  cmd = { "lua-language-server" },
-  filetypes = { "lua" },
-  root_markers = { ".luarc.json", ".luarc.jsonc" },
-  settings = {
-    Lua = {
-      runtime = {
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        globals = {
-          'vim',
-          'require'
-        },
-      },
-      workspace = {
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      telemetry = {
-        enable = false,
-      },
-    },}
-  }
-
-vim.lsp.config.clangd = {
-  cmd = {
-    "clangd",
-    "--clang-tidy",
-    "--background-index",
-    "--offset-encoding=utf-8",
-  },
-  root_markers = { ".clangd", "compile_commands.json" },
-  filetypes = { "c", "cpp" },
-}
-
-vim.lsp.config.tinymist = {
-  cmd = { "tinymist" },
-  filetypes = { "typst" },
-  settings = {
-    formatterMode = "typstyle",
-    exportPdf = "onType",
-    semanticTokens = "disable"
-  } }
-
-vim.lsp.config('pyright', {
-  cmd = { "pyright-langserver", "--stdio" },
-  filetypes = { "python" },
-  root_markers = {
-    "pyproject.toml",
-    "setup.py",
-    "setup.cfg",
-    "requirements.txt",
-    "Pipfile",
-    "pyrightconfig.json",
-    ".git"
-  },
-  settings = {
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        diagnosticMode = "openFilesOnly",
-        useLibraryCodeForTypes = true
-      }
-    }
-  }
-})
-
 vim.lsp.enable({
-  "luals",
+  "lua_ls",
   "clangd",
   "tinymist",
   "pyright"
 })
 
+---@diagnostic disable: need-check-nil
 vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    ---@diagnostic disable-next-line: need-check-nil
+  callback = function(args)
+    local buf = args.buf
+    vim.bo[buf].omnifunc = nil
+    vim.bo[buf].tagfunc = nil
+
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
     client.server_capabilities.semanticTokensProvider = nil
+
+    local opts = { buffer = buf, noremap = true, silent = true }
+
+    opts.desc = "go to Definition (Source)"
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    opts.desc = "Go to Declaration (Header)"
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+
+    if client.name == "clangd" then
+      opts.desc = "Switch between Source/Header file"
+      vim.keymap.set("n", "gs", ":LspClangdSwitchSourceHeader<cr>", opts)
+    elseif client.name == "tinymist" then
+      vim.api.nvim_buf_create_user_command(buf, 'OpenPdf', function()
+        local filepath = vim.api.nvim_buf_get_name(0)
+        if filepath:match("%.typ$") then
+          local pdf_path = filepath:gsub("%.typ$", ".pdf")
+          vim.system({ "zathura", pdf_path })
+        end
+      end, { desc = 'Open pdf based on current file name' })
+    end
   end,
 })
 
