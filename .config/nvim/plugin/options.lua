@@ -28,3 +28,5 @@ vim.opt.jumpoptions = { "stack", "view" }
 vim.opt.completeopt = { "fuzzy", "menuone", "noinsert", "preview" }
 vim.opt.wildoptions = { "tagfile", "fuzzy" }
 vim.opt.path:append("**")
+
+vim.opt.tabclose = "uselast"
