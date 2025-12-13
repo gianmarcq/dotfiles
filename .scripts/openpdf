@@ -7,7 +7,7 @@ if [ -n "$1" ]; then
         echo "Unable to find file $1"
     fi
 else
-    selected_file=$(fd . $HOME -e pdf | fzf)
+    selected_file=$(fd . $HOME -e pdf --exclude 'Telegram Desktop' | fzf)
     if [ -n "$selected_file" ]; then
         nohup xdg-open "$selected_file" >/dev/null 2>&1 &
         disown
