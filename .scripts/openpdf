@@ -9,7 +9,7 @@ if [ -n "$1" ]; then
 else
     selected_file=$(fd . $HOME -e pdf | fzf)
     if [ -n "$selected_file" ]; then
-        nohup zathura "$selected_file" >/dev/null 2>&1 &
+        nohup xdg-open "$selected_file" >/dev/null 2>&1 &
         disown
     fi
 fi
