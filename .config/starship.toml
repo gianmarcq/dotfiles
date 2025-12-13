@@ -1,0 +1,22 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+format = "$git_branch$hostname$directory$character"
+
+[character]
+success_symbol = "[>](bold green)"
+error_symbol = "[>](bold dimmed green)"
+
+[directory]
+format = "[$read_only]($read_only_style)[$path]($style)"
+read_only = "RO "
+read_only_style = "bold"
+style = "green"
+
+[git_branch]
+format = "[$branch(:$remote_branch)]($style) "
+style = "purple"
+
+[hostname]
+format = "[@$hostname]($style):"
+style = "cyan"

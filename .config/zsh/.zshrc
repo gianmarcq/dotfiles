@@ -19,8 +19,9 @@ export PATH="$HOME/.scripts:$HOME/.local/bin:$PATH"
 
 bindkey -e
 
-autoload -U colors && colors
-PS1="%B%{$fg[green]%}[%n@%m:%~]%#%{$reset_color%}%b "
+autoload edit-command-line
+zle -N edit-command-line
+bindkey '^X^e' edit-command-line
 
 zstyle :compinstall filename '/home/gianmarco/.config/zsh/.zshrc'
 autoload -Uz compinit promptinit
@@ -34,3 +35,6 @@ eval "$(zoxide init zsh)"
 
 # Set up brew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Set up starship prompt
+eval "$(starship init zsh)"
