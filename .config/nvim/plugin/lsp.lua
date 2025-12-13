@@ -2,7 +2,8 @@ vim.lsp.enable({
   "lua_ls",
   "clangd",
   "tinymist",
-  "pyright"
+  "pyright",
+  "taplo"
 })
 
 ---@diagnostic disable: need-check-nil
