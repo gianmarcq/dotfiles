@@ -3,7 +3,8 @@ vim.lsp.enable({
   "clangd",
   "tinymist",
   "pyright",
-  "taplo"
+  "taplo",
+  "verible"
 })
 
 ---@diagnostic disable: need-check-nil
