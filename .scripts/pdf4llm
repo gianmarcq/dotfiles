@@ -1,0 +1,9 @@
+#!/usr/bin/python3
+
+import pymupdf4llm, sys, os
+from pathlib import Path
+
+src = sys.argv[1]
+md = pymupdf4llm.to_markdown(src)
+dest = os.path.splitext(src)[0] + '.md'
+Path(dest).write_bytes(md.encode())
