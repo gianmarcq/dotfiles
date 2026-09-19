@@ -3,19 +3,15 @@ vim.lsp.enable({
   "clangd",
   "tinymist",
   "pyright",
-  "taplo",
-  "verible"
 })
 
 ---@diagnostic disable: need-check-nil
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local buf = args.buf
-    vim.bo[buf].omnifunc = nil
-    -- vim.bo[buf].tagfunc = nil
 
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    client.server_capabilities.semanticTokensProvider = nil
+    vim.lsp.semantic_tokens.enable(false, { clien_id = client.id })
 
     local opts = { buffer = buf, noremap = true, silent = true }
 
@@ -32,7 +28,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
         local filepath = vim.api.nvim_buf_get_name(0)
         if filepath:match("%.typ$") then
           local pdf_path = filepath:gsub("%.typ$", ".pdf")
-          vim.system({ "zathura", pdf_path })
+          vim.system({ "xdg-open", pdf_path })
         end
       end, { desc = 'Open pdf based on current file name' })
     end

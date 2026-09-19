@@ -30,6 +30,3 @@ require("lazy").setup({
   rocks = { enabled = false },
   install = { colorscheme = { "retrobox" } },
 })
-
--- Custom functions for live-translation
-require("glossary")

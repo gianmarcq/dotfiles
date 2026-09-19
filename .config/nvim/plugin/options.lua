@@ -1,5 +1,5 @@
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.opt.number = false
+vim.opt.relativenumber = false
 vim.opt.undofile = true
 vim.opt.smartindent = true
 vim.opt.guicursor = "i:block"
@@ -30,3 +30,5 @@ vim.opt.wildoptions = { "tagfile", "fuzzy" }
 vim.opt.path:append("**")
 
 vim.opt.tabclose = "uselast"
+vim.opt.shortmess:append("I")
+vim.opt.statusline = " %f %m%r%h%w%= %l:%c %p%% "
