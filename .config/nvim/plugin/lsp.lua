@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local buf = args.buf
 
     local client = vim.lsp.get_client_by_id(args.data.client_id)
-    vim.lsp.semantic_tokens.enable(false, { clien_id = client.id })
+    client.server_capabilities.semanticTokensProvider = nil
 
     local opts = { buffer = buf, noremap = true, silent = true }
 
